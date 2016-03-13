@@ -16,7 +16,7 @@ import java.io.IOException;
 
 
 @Controller
-@ConditionalOnMissingBean(name="rootProductionController")
+//@ConditionalOnMissingBean(name="rootProductionController")
 public class RootDevController extends WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter{
     private String ROOT_PATH = "client/src";
 

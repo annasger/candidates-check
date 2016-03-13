@@ -7,7 +7,6 @@ import ru.cbr.candidatesCheck.domen.Candidate;
 import ru.cbr.candidatesCheck.repository.ICandidateRepository;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,7 +24,7 @@ public class CandidateService {
 
     @Transactional
     public List<Candidate> getAll(){
-        return candidateRepository.findAll()
+        return candidateRepository.findAll();
     }
 
     @Transactional
@@ -39,4 +38,10 @@ public class CandidateService {
         candidateRepository.save(candidate);
         return candidate;
     }
+
+    @Transactional
+    public void del(long id_del){
+        candidateRepository.delete(id_del);
+    }
+
 }

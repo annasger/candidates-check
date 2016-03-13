@@ -2,16 +2,14 @@ package ru.cbr.candidatesCheck.web;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.cbr.candidatesCheck.domen.Candidate;
 import ru.cbr.candidatesCheck.service.CandidateService;
 
 import java.util.List;
 
-@RequestMapping(value = "/candidate")
+@RestController
+//@RequestMapping(value = "/candidate")
 public class CandidateController {
     @Autowired
     private CandidateService candidateService;
@@ -20,13 +18,41 @@ public class CandidateController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/candidate", method = RequestMethod.GET)
     List<Candidate> candidate(){
         return candidateService.getAll();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/candidate", method = RequestMethod.POST)
     Candidate add(@RequestBody Candidate candidate){
         return candidateService.add(candidate);
+
     }
+
+    @RequestMapping(value = "/candidate/{id}", method = RequestMethod.POST)
+    String del(@PathVariable(value = "id") String id_del){
+        try {
+            Long id = Long.parseLong(id_del);
+            candidateService.del(id);
+        } catch (NumberFormatException e) {
+            System.err.println(id_del + e.getMessage());
+        }
+
+        return id_del;
+    }
+
+
+ /*   @RequestMapping(value = "/candidate/del/{id}", method = RequestMethod.POST)
+    String  del_old (@PathVariable(value = "id") String id_del){
+        try {
+            Long id = Long.parseLong(id_del);
+            candidateService.del(id);
+        } catch (NumberFormatException e) {
+            System.err.println(id_del + e.getMessage());
+        }
+
+        return id_del;
+    }
+*/
+
 }

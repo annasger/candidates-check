@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="candidatesChec">
+<html lang="en" data-ng-app="candidatesCheck">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,6 +50,7 @@
             <th>Фамилия</th>
             <th>Имя</th>
             <th>id</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -58,6 +59,9 @@
             <td data-ng-bind="candidate.surname"></td>
             <td data-ng-bind="candidate.name"></td>
             <td data-ng-bind="candidate.id"></td>
+            <td>
+                <i class="glyphicon glyphicon-remove" data-ng-click="removeCandidate(candidate.id)"></i>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -74,10 +78,18 @@
         <button data-ng-click="add()" class="btn btn-default">Добавить</button>
     </form>
 </div>
-
-
-
 <hr/>
+
+
+<!----<form class="well">
+    <div class="form-group">
+        <label for="name">id удаляемого:</label>
+        <input class="form-control" id="id_del" data-ng-model="id_del">
+    </div>
+    <button data-ng-click="del(id_del)" class="btn btn-default">Удалить</button>
+</form>
+/
+-->
 <div  class="container text-right">
     <span data-ng-bind="'Банк России 2016'"></span>
 </div>
